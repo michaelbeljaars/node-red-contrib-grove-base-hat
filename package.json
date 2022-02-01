@@ -24,6 +24,7 @@
       "grove-led": "grove-led/grove-led.js",
       "grove-button": "grove-button/grove-button.js",
       "grove-pir": "grove-pir/grove-pir.js",
+      "grove-button": "grove-analog/grove-analog.js",
       "grove-ultrasonic-ranger": "grove-ultrasonic-ranger/grove-ultrasonic-ranger.js",
       "grove-light-sensor-v1_2": "grove-light-sensor-v1_2/grove-light-sensor-v1_2.js",
       "grove-temperature-sensor": "grove-temperature-sensor/grove-temperature-sensor.js",
