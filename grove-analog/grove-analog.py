@@ -164,7 +164,7 @@ def main():
 
     while True:
         print(adc.read_voltage(int(sys.argv[1])))
-        time.sleep(0.1)
+        time.sleep(float(sys.argv[2]))
        
 
 if __name__ == '__main__':

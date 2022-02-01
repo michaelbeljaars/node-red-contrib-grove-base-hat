@@ -4,6 +4,7 @@
         color: '#a6bbcf',
         defaults: {
             name: {value:""},
+            refresh_time: {value:1},
             port_number: {value:0}
         },
         inputs:0,
@@ -32,19 +33,24 @@
     </div>
 
     <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i>Refresh time (s)</label>
+        <input type="number" id="node-input-refresh_time" placeholder="RefreshTime" value="1" min="0.1" max="10">
+    </div>
+    
+    <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
 </script>
 
 <script type="text/x-red" data-help-name="grove-analog">
-    <p>The node controls Grove Button.</p>
+    <p>The node reads from the analog ports.</p>
     <h3>Outputs</h3>
         <dl class="message-properties">
         <dt>payload
             <span class="property-type">number</span>
         </dt>
-        <dd>the payload of Grove Button status. the value of 1 when the button is pressed and 0 when the button is released.</dd>
+        <dd>the payload of Grove analog status.</dd>
     <h3>Details</h3>
-    <p>This node listens to Grove Button and response Grove Button status.</p>
+    <p>This node reads from the analog port and reports its value.</p>
 </script>

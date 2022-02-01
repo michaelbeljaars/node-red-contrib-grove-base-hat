@@ -1,23 +1,20 @@
 var path = require('path');
 
 module.exports = function(RED) {
-    function GroveAnalogNode(config) {
+    function GroveDigitalNode(config) {
         RED.nodes.createNode(this,config);
 
         this.port_number = config.port_number;
-        this.refresh_time = config.refresh_time;
 
-        this.port_name = "A" + this.port_number;
+        this.port_name = "D" + this.port_number;
         this.status({fill:"blue",shape:"dot",text:this.port_name});
         
         var node = this;
         var msg;
 
         const gpio_pin = this.port_number;
-        const refresh_time = this.refresh_time;
-        
         const spawn = require('child_process').spawn;
-        const grove_python = spawn('python', [ '-u' , path.join( __dirname , 'grove-analog.py' ) , gpio_pin, refresh_time ]);
+        const grove_python = spawn('python', [ '-u' , path.join( __dirname , 'grove-digital.py' ) , gpio_pin ]);
         this.status({fill:"green",shape:"dot",text:this.port_name + " listened"});
         
         this.on("input", function(msg) {
@@ -29,13 +26,13 @@ module.exports = function(RED) {
             
             let str_data = String(data);
             let str_sensor_data = str_data;
-            //if(str_data.length > 2){
-            //    str_sensor_data = str_data.substr(0,1);
-            //}
+            if(str_data.length > 2){
+                str_sensor_data = str_data.substr(0,1);
+            }
 
             // node.log(str_data.length);
 
-            //this.status({fill:"blue",shape:"dot",text:this.port_name + " value chanded"});
+            this.status({fill:"blue",shape:"dot",text:this.port_name + " value chanded"});
             let _self = this;
 
             msg = {};
@@ -69,5 +66,5 @@ module.exports = function(RED) {
             node.send(msg);
         });
     }
-    RED.nodes.registerType("grove-analog",GroveAnalogNode);
+    RED.nodes.registerType("grove-digital",GroveDigitalNode);
 }
